@@ -10,11 +10,11 @@ DSCI524_Group36_MLpipeline is a project that simplifies some of the steps in the
 
 ## Methods available in tnis package (Function Documentation)
 
-1. Model Comparison: Accepts a list of scikit learn model objects, a series of predictions, a series of actual values and a comparison metric to be used, and returns a single model. 
+1. Model Comparison: Accepts a list of scikit learn model objects, a dataframe of observations, a series of actual values and a comparison metric to be used, and returns a single model. 
 
     a. Input:
         - List of fitted model objects
-        - Series of observations
+        - dataframe of observations
         - Series of true responses
         - Comparison metric (e.g accuracy)
     b. Output:
