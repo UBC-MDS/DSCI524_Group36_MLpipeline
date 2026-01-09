@@ -10,14 +10,15 @@ DSCI524_Group36_MLpipeline is a project that simplifies some of the steps in the
 
 ## Methods available in this package (Function Documentation)
 
+1. EDA functions: Exploratory data analysis of the target column with summary statistics and class distribution visualization
 2. Model Pipeline: Create model pipeline for model of choice (logistic regression, SVC or
     random forest) with standardisation for numerical features and one-hot
     encoding for categorical features.
-3. EDA functions: Exploratory data analysis of the target column with summary statistics and class distribution visualization
-4. Model Metrics Computation: Computes evaluation metrics for a single fitted scikit-learn model using user-specified metric functions and returns the results in a tabular format for reporting or comparison.
+3. Model Metrics Computation: Computes evaluation metrics for a single fitted scikit-learn model using user-specified metric functions and returns the results in a tabular format for reporting or comparison.
+4. Model Comparison: Accepts a list of scikit learn model objects, a dataframe of observations, a series of actual values and a comparison metric to be used, and returns a single model.
 
 ## Contributors
-- Yi-Ling Chin
+- Charlene Chin
 - Claudia Liauw
 - Bright Arafat Bello
 - Tiffany Chu
