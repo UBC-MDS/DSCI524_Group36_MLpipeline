@@ -13,7 +13,7 @@ DSCI524_Group36_MLpipeline is a project that (describe what it does here).
 ## Contributors
 - Yi-Ling Chin
 - Claudia Liauw
-- Bright Bello
+- Bright Arafat Bello
 - Tiffany Chu
 
 ## Get started
