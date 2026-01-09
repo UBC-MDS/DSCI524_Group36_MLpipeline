@@ -19,7 +19,7 @@ DSCI524_Group36_MLpipeline is a project that simplifies some of the steps in the
         - Comparison metric (e.g accuracy)
     b. Output:
         - Best performing scikit learn model object
-
+2. Model Metrics Computation: Computes evaluation metrics for a single fitted scikit-learn model using user-specified metric functions and returns the results in a tabular format for reporting or comparison.
 
 ## Contributors
 - Yi-Ling Chin
