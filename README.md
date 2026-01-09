@@ -12,13 +12,14 @@ DSCI524_Group36_MLpipeline is a project that simplifies some of the steps in the
 
 1. Model Comparison: Accepts a list of scikit learn model objects, a dataframe of observations, a series of actual values and a comparison metric to be used, and returns a single model. 
 
-    a. Input:
-        - List of fitted model objects
-        - dataframe of observations
-        - Series of true responses
-        - Comparison metric (e.g accuracy)
-    b. Output:
-        - Best performing scikit learn model object
+   **Input:**
+- List of fitted scikit-learn model objects
+- DataFrame of observations
+- Series of true responses
+- Comparison metric (e.g. accuracy)
+
+**Output:**
+- Best-performing scikit-learn model object
 
 
 ## Contributors
