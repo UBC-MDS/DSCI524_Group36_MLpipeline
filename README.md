@@ -8,19 +8,13 @@
 
 DSCI524_Group36_MLpipeline is a project that simplifies some of the steps in the machine learning process and provides a model comparison function. These methods cover simple tasks in exploratory data analysis (EDA), pipeline creation, computation of metrics and model comparison. This serves ML practitioners with a quick fix to most tasks they may need to perform in the development process without having to import multiple packages.
 
-## Methods available in tnis package (Function Documentation)
+## Methods available in this package (Function Documentation)
 
-1. Model Comparison: Accepts a list of scikit learn model objects, a dataframe of observations, a series of actual values and a comparison metric to be used, and returns a single model. 
-
-    a. Input:
-        - List of fitted model objects
-        - dataframe of observations
-        - Series of true responses
-        - Comparison metric (e.g accuracy)
-    b. Output:
-        - Best performing scikit learn model object
-2. Model Metrics Computation: Computes evaluation metrics for a single fitted scikit-learn model using user-specified metric functions and returns the results in a tabular format for reporting or comparison.
+2. Model Pipeline: Create model pipeline for model of choice (logistic regression, SVC or
+    random forest) with standardisation for numerical features and one-hot
+    encoding for categorical features.
 3. EDA functions: Exploratory data analysis of the target column with summary statistics and class distribution visualization
+4. Model Metrics Computation: Computes evaluation metrics for a single fitted scikit-learn model using user-specified metric functions and returns the results in a tabular format for reporting or comparison.
 
 ## Contributors
 - Yi-Ling Chin
