@@ -10,6 +10,12 @@ If you don't plan to publish to PyPI, you can remove them.*
 
 DSCI524_Group36_MLpipeline is a project that (describe what it does here).
 
+## Contributors
+- Yi-Ling Chin
+- Claudia Liauw
+- Bright Bello
+- Tiffany Chu
+
 ## Get started
 
 You can install this package into your preferred Python environment using pip:

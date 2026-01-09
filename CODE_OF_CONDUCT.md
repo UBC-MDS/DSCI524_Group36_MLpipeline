@@ -12,6 +12,16 @@ and orientation.
 We pledge to act and interact in ways that contribute to an open, welcoming,
 diverse, inclusive, and healthy community.
 
+## Diversity and Inclusivity Statement
+This group is committed to creating a respectful and welcoming environment for everyone. Diversity of background, identity, and thought is valued and celebrated. All individuals, regardless of race, gender, age, disability, sexual orientation, religion, or any other characteristic, are treated with dignity and respect at all times
+
+## Expected and Unacceptable Behaviour
+- Treat all members with courtesy, respect, and fairness.
+- Use inclusive and respectful language.
+- Value and include diverse perspectives in all activities.
+- Avoid discrimination, harassment, bullying, violence, threats, and offensive jokes or language.
+- Unacceptable behaviours include, but are not limited to: harassment, discrimination, physical or verbal abuse, intimidation, exclusion, and retaliation against those who report concerns
+
 ## Our Standards
 
 Examples of behavior that contributes to a positive environment for our
@@ -58,11 +68,8 @@ representative at an online or offline event.
 
 ## Enforcement
 
-[//]: # (TODO: You need to choose whom and how to contact them.)
-
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the community leaders responsible for enforcement at
-\[INSERT CONTACT METHOD\].
+reported to the community leaders responsible for enforcement (the TA).
 All complaints will be reviewed and investigated promptly and fairly.
 
 All community leaders are obligated to respect the privacy and security of the
