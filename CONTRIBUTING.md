@@ -13,6 +13,10 @@ You can contribute in many ways, for example:
 * [Write Documentation](#write-documentation)
 * [Submit Feedback](#submit-feedback)
 
+## Workflow
+We are documenting our issues on GitHub issues, as well as on the GitHub Projects board for our repository. 
+We will also edit the changelog file for each release. Our collaboration stategy is based on what we've learned in DSCI 524 and 522.
+
 ### Report Bugs
 
 Report bugs at https://github.com/UBC-MDS/dsci524_group36_mlpipeline/issues.
