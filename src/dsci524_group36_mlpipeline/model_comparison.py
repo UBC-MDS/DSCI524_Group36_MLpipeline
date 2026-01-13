@@ -3,7 +3,7 @@ Method for comparing fitted scikit-learn models using
 a common evaluation metric.
 """
 
-def model_comparison(models, X, y, metric="accuracy"):
+def model_comparison(models, X, y, metric="accuracy",greater_is_better=False):
     """
     Compare multiple fitted scikit-learn models and return the best-performing one.
 
