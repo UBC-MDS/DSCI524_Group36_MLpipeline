@@ -48,6 +48,9 @@ def model_comparison(models, X, y, metric="accuracy",greater_is_better=False):
     import numpy as np
     import warnings
 
+    if not isinstance(metric, str):
+        raise TypeError(f"Expected input to be str, got {type(metric)}")
+
     if not hasattr(metrics, metric):
         raise ValueError(f"{metric} is not a valid sklearn metric")
     
