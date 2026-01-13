@@ -3,7 +3,24 @@ A test module that tests the model comparison function.
 
 This test script provides multiple tests to ensure that the model comparison function is performing as expected.
 """
+from sklearn.linear_model import LogisticRegression, LinearRegression
+from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
 
+log = LogisticRegression()
+lr = LinearRegression()
+rf = RandomForestClassifier()
+
+
+load_data = load_iris()
+X = load_data["data"]
+y = load_data["target"]
+
+X_train,X_test, y_train,y_test = train_test_split(X, y, test_size=0.2)
+
+
+data = load_iris()
 from dsci524_group36_mlpipeline.model_comparison import model_comparison
 
 def test_metric_type():
