@@ -44,21 +44,37 @@ def model_comparison(models, X, y, metric="accuracy",greater_is_better=False):
     >>> best_model = model_comparison(models, X, y, metric="accuracy")
     """
     from sklearn import metrics
+    from sklearn.base import is_classifier
     import numpy as np
+    import warnings
 
     if not hasattr(metrics, metric):
         raise ValueError(f"{metric} is not a valid sklearn metric")
     
     metric_fn = getattr(metrics, metric)
+
+    valid_models = []
     scores = []
+
     for model in models:
-        pred = model.predict(X)
-        score = metric_fn(y,pred)
-        scores.append(score)
+        if not is_classifier(model):
+            warnings.warn(
+                f"Skipped model {model.__class__.__name__}: not a classifier",
+                UserWarning
+            )
+            continue
+        else:   
+            pred = model.predict(X)
+            score = metric_fn(y,pred)
+            valid_models.append(model)
+            scores.append(score)
+    
+    if not scores:
+        raise ValueError("No valid Classification models provided")
     
     if greater_is_better:
         best_idx = np.argmax(scores)
     else:
         best_idx = np.argmin(scores)
 
-    return models[best_idx], scores[best_idx]
+    return models[best_idx]
