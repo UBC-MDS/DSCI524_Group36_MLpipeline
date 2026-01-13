@@ -3,7 +3,7 @@ Method for comparing fitted scikit-learn models using
 a common evaluation metric.
 """
 
-def model_comparison(models, X, y, metric="accuracy"):
+def model_comparison(models, X, y, metric="accuracy",greater_is_better=False):
     """
     Compare multiple fitted scikit-learn models and return the best-performing one.
 
@@ -43,3 +43,22 @@ def model_comparison(models, X, y, metric="accuracy"):
     ...           DecisionTreeClassifier().fit(X, y)]
     >>> best_model = model_comparison(models, X, y, metric="accuracy")
     """
+    from sklearn import metrics
+    import numpy as np
+
+    if not hasattr(metrics, metric):
+        raise ValueError(f"{metric} is not a valid sklearn metric")
+    
+    metric_fn = getattr(metrics, metric)
+    scores = []
+    for model in models:
+        pred = model.predict(X)
+        score = metric_fn(y,pred)
+        scores.append(score)
+    
+    if greater_is_better:
+        best_idx = np.argmax(scores)
+    else:
+        best_idx = np.argmin(scores)
+
+    return models[best_idx], scores[best_idx]
