@@ -23,6 +23,10 @@ def model_comparison(models, X, y, metric="accuracy",greater_is_better=False):
         Evaluation metric used for comparison. Must be a valid
         scikit-learn classification metric (e.g. "accuracy",
         "f1", "precision", "recall").
+    greater_is_better: bool, default=False
+        Ensures proper comparison is performed for our chosen metric
+        If False, error metric, lower error is better
+        If True, accuracy measure. Higher accuracy is better.
 
     Returns
     -------
