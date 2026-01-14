@@ -51,9 +51,11 @@ def model_comparison(models, X, y, metric="accuracy",greater_is_better=False):
     from sklearn.base import is_classifier
     import numpy as np
     import warnings
+    from sklearn.utils.validation import check_is_fitted
+    from sklearn.exceptions import NotFittedError
 
     if not isinstance(metric, str):
-        raise TypeError(f"Expected input to be str, got {type(metric)}")
+        raise TypeError(f"Expected metric input to be str")
 
     if not hasattr(metrics, metric):
         raise ValueError(f"{metric} is not a valid sklearn metric")
@@ -67,6 +69,14 @@ def model_comparison(models, X, y, metric="accuracy",greater_is_better=False):
         if not is_classifier(model):
             warnings.warn(
                 f"Skipped model {model.__class__.__name__}: not a classifier",
+                UserWarning
+            )
+            continue
+        try:
+            check_is_fitted(lr)
+        except NotFittedError as exc:
+            warnings.warn(
+                f"Skipped model {model.__class__.__name__}: not fitted yet",
                 UserWarning
             )
             continue
