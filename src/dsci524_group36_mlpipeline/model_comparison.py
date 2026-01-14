@@ -94,4 +94,4 @@ def model_comparison(models, X, y, metric="accuracy",greater_is_better=False):
     else:
         best_idx = np.argmin(scores)
 
-    return models[best_idx]
+    return valid_models[best_idx]
