@@ -20,7 +20,7 @@ load_data = load_iris()
 X = load_data["data"]
 y = load_data["target"]
 
-X_train,X_test, y_train,y_test = train_test_split(X, y, test_size=0.2)
+X_train,X_test, y_train,y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 log.fit(X_train,y_train)
 lr.fit(X_train,y_train)
@@ -36,7 +36,7 @@ def test_valid_skmetric():
     is passed for metric.
     """
     metric = 4
-    best = model_comparison([log, rf], X_train, y_train, metric=metric,greater_is_better=False)
+    
 
     with pytest.raises(TypeError, match="Expected metric input to be str"): 
         model_comparison([log, rf], X_train, y_train, metric=metric,greater_is_better=False)
@@ -59,7 +59,7 @@ def test_function_output():
     
     best = model_comparison([log, rf], X_train, y_train, metric=metric,greater_is_better=False)
     
-    assert is_classifier(best) == True
+    assert is_classifier(best) 
 
         
 
@@ -70,8 +70,9 @@ def test_no_classifier_found():
     """
     metric = "mean_squared_error"
 
-    with pytest.raises(ValueError, match="No valid Classification models provided"): 
-        model_comparison([lr], X_train, y_train, metric=metric,greater_is_better=False)
+    with pytest.warns(UserWarning):  # Expect the warning about non-classifier
+        with pytest.raises(ValueError, match="No valid Classification models provided"): 
+            model_comparison([lr], X_train, y_train, metric=metric, greater_is_better=False)
 
 def test_model_is_fitted():
     """
