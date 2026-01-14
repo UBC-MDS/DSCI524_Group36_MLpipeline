@@ -93,3 +93,86 @@ def test_model_is_fitted():
     
     with pytest.warns(UserWarning):
         model_comparison([fitted_models['log'], fitted_models['et']], fitted_models['X_train'], fitted_models['y_train'], metric=metric,greater_is_better=False)
+
+
+
+# Additional tests suggested by Claude AI sonnet 4.5
+
+def test_empty_model_list():
+    """
+    Tests that the function raises a ValueError when an empty list of models
+    is provided.
+    """
+    metric = "accuracy"
+    
+    with pytest.raises(ValueError, match="No valid Classification models provided"):
+        model_comparison([], fitted_models['X_train'], fitted_models['y_train'], metric=metric, greater_is_better=True)
+
+
+def test_unknown_metric_name():
+    """
+    Tests that the function raises a ValueError when an invalid/unknown
+    sklearn metric name is provided.
+    """
+    metric = "this_metric_does_not_exist"
+    
+    with pytest.raises(ValueError, match="this_metric_does_not_exist is not a valid sklearn metric"):
+        model_comparison([fitted_models['log'], fitted_models['rf']], fitted_models['X_train'], fitted_models['y_train'], metric=metric, greater_is_better=True)
+
+
+def test_all_models_unfitted():
+    """
+    Tests that the function raises a ValueError when all provided models
+    are unfitted.
+    """
+    # Create unfitted models
+    unfitted_log = LogisticRegression()
+    unfitted_rf = RandomForestClassifier()
+    
+    metric = "accuracy"
+    
+    with pytest.warns(UserWarning):  # Expect warnings about unfitted models
+        with pytest.raises(ValueError, match="No valid Classification models provided"):
+            model_comparison([unfitted_log, unfitted_rf], fitted_models['X_train'], fitted_models['y_train'], 
+                           metric=metric, greater_is_better=True)
+
+
+def test_invalid_x_train_shape():
+    """
+    Tests that the function raises an error when X_train has incompatible
+    shape with the fitted models (wrong number of features).
+    """
+    metric = "accuracy"
+    
+    # Create X with wrong number of features (iris has 4 features, we'll use 2)
+    invalid_X = fitted_models['X_train'][:, :2]
+    
+    with pytest.raises(ValueError):
+        model_comparison([fitted_models['log'], fitted_models['rf']], invalid_X, fitted_models['y_train'], metric=metric, greater_is_better=True)
+
+
+def test_invalid_y_train_shape():
+    """
+    Tests that the function raises an error when y_train has incompatible
+    shape with X_train (mismatched number of samples).
+    """
+    metric = "accuracy"
+    
+    # Create y with wrong number of samples
+    invalid_y = fitted_models['y_train'][:len(fitted_models['y_train'])//2]
+    
+    with pytest.raises(ValueError):
+        model_comparison([fitted_models['log'], fitted_models['rf']], fitted_models['X_train'], invalid_y, metric=metric, greater_is_better=True)
+
+
+def test_invalid_x_train_type():
+    """
+    Tests that the function handles invalid X_train data types appropriately.
+    """
+    metric = "accuracy"
+    
+    # Pass a string instead of array-like
+    invalid_X = "not an array"
+    
+    with pytest.raises((ValueError, TypeError, AttributeError)):
+        model_comparison([fitted_models['log'], fitted_models['rf']], invalid_X, fitted_models['y_train'], metric=metric, greater_is_better=True)
