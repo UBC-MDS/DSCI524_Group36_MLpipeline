@@ -10,22 +10,32 @@ from sklearn.model_selection import train_test_split
 import pytest
 from sklearn.base import is_classifier
 
-log = LogisticRegression()
-lr = LinearRegression()
-rf = RandomForestClassifier()
-et = ExtraTreesClassifier() #Will not be fitted
 
-
-load_data = load_iris()
-X = load_data["data"]
-y = load_data["target"]
-
-X_train,X_test, y_train,y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-log.fit(X_train,y_train)
-lr.fit(X_train,y_train)
-rf.fit(X_train,y_train)
-
+@pytest.fixture #suggestion from claude
+def fitted_models():
+    """Fixture to provide fitted models for testing"""
+    load_data = load_iris()
+    X = load_data["data"]
+    y = load_data["target"]
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    
+    log = LogisticRegression()
+    rf = RandomForestClassifier()
+    lr = LinearRegression()
+    et = ExtraTreesClassifier() 
+    
+    log.fit(X_train, y_train)
+    rf.fit(X_train, y_train)
+    lr.fit(X_train, y_train)
+    
+    return {
+        'log': log,
+        'rf': rf,
+        'lr': lr,
+        'et': et,
+        'X_train': X_train,
+        'y_train': y_train
+    }
 
 
 from dsci524_group36_mlpipeline.model_comparison import model_comparison
@@ -36,10 +46,11 @@ def test_valid_skmetric():
     is passed for metric.
     """
     metric = 4
-    
 
     with pytest.raises(TypeError, match="Expected metric input to be str"): 
-        model_comparison([log, rf], X_train, y_train, metric=metric,greater_is_better=False)
+        model_comparison([fitted_models['log'], fitted_models['rf']], 
+                        fitted_models['X_train'], fitted_models['y_train'], 
+                        metric=metric, greater_is_better=False)
 
 def test_warning_non_classifier():
     """
@@ -49,7 +60,7 @@ def test_warning_non_classifier():
     metric = "mean_squared_error"
     
     with pytest.warns(UserWarning):
-        model_comparison([log, lr], X_train, y_train, metric=metric,greater_is_better=False)
+        model_comparison([fitted_models['log'], fitted_models['lr']], fitted_models['X_train'], fitted_models['y_train'], metric=metric,greater_is_better=False)
 
 def test_function_output():
     """
@@ -57,7 +68,7 @@ def test_function_output():
     """
     metric = "mean_squared_error"
     
-    best = model_comparison([log, rf], X_train, y_train, metric=metric,greater_is_better=False)
+    best = model_comparison([fitted_models['log'], fitted_models['rf']], fitted_models['X_train'], fitted_models['y_train'], metric=metric,greater_is_better=False)
     
     assert is_classifier(best) 
 
@@ -72,7 +83,7 @@ def test_no_classifier_found():
 
     with pytest.warns(UserWarning):  # Expect the warning about non-classifier
         with pytest.raises(ValueError, match="No valid Classification models provided"): 
-            model_comparison([lr], X_train, y_train, metric=metric, greater_is_better=False)
+            model_comparison([fitted_models['lr']], fitted_models['X_train'], fitted_models['y_train'], metric=metric, greater_is_better=False)
 
 def test_model_is_fitted():
     """
@@ -81,4 +92,4 @@ def test_model_is_fitted():
     metric = "mean_squared_error"
     
     with pytest.warns(UserWarning):
-        model_comparison([log, et], X_train, y_train, metric=metric,greater_is_better=False)
+        model_comparison([fitted_models['log'], fitted_models['et']], fitted_models['X_train'], fitted_models['y_train'], metric=metric,greater_is_better=False)
