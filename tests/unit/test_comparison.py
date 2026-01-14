@@ -40,7 +40,7 @@ def fitted_models():
 
 from dsci524_group36_mlpipeline.model_comparison import model_comparison
 
-def test_valid_skmetric():
+def test_valid_skmetric(fitted_models):
     """
     Tests that the function returns an error if the wrong data type
     is passed for metric.
@@ -52,7 +52,7 @@ def test_valid_skmetric():
                         fitted_models['X_train'], fitted_models['y_train'], 
                         metric=metric, greater_is_better=False)
 
-def test_warning_non_classifier():
+def test_warning_non_classifier(fitted_models):
     """
     Tests that the function raises a warning if a non classification model
     is added to the metric list
@@ -62,7 +62,7 @@ def test_warning_non_classifier():
     with pytest.warns(UserWarning):
         model_comparison([fitted_models['log'], fitted_models['lr']], fitted_models['X_train'], fitted_models['y_train'], metric=metric,greater_is_better=False)
 
-def test_function_output():
+def test_function_output(fitted_models):
     """
     Tests that the output of the function is a valid sklearn classification model
     """
@@ -74,7 +74,7 @@ def test_function_output():
 
         
 
-def test_no_classifier_found():
+def test_no_classifier_found(fitted_models):
     """
     Tests that the function raises a value error if no valid classification models are
     passed into the function.
@@ -85,7 +85,7 @@ def test_no_classifier_found():
         with pytest.raises(ValueError, match="No valid Classification models provided"): 
             model_comparison([fitted_models['lr']], fitted_models['X_train'], fitted_models['y_train'], metric=metric, greater_is_better=False)
 
-def test_model_is_fitted():
+def test_model_is_fitted(fitted_models):
     """
     Tests if the function raises an error if the passed model has not been fitted
     """
@@ -98,7 +98,7 @@ def test_model_is_fitted():
 
 # Additional tests suggested by Claude AI sonnet 4.5
 
-def test_empty_model_list():
+def test_empty_model_list(fitted_models):
     """
     Tests that the function raises a ValueError when an empty list of models
     is provided.
@@ -109,7 +109,7 @@ def test_empty_model_list():
         model_comparison([], fitted_models['X_train'], fitted_models['y_train'], metric=metric, greater_is_better=True)
 
 
-def test_unknown_metric_name():
+def test_unknown_metric_name(fitted_models):
     """
     Tests that the function raises a ValueError when an invalid/unknown
     sklearn metric name is provided.
@@ -120,7 +120,7 @@ def test_unknown_metric_name():
         model_comparison([fitted_models['log'], fitted_models['rf']], fitted_models['X_train'], fitted_models['y_train'], metric=metric, greater_is_better=True)
 
 
-def test_all_models_unfitted():
+def test_all_models_unfitted(fitted_models):
     """
     Tests that the function raises a ValueError when all provided models
     are unfitted.
@@ -137,7 +137,7 @@ def test_all_models_unfitted():
                            metric=metric, greater_is_better=True)
 
 
-def test_invalid_x_train_shape():
+def test_invalid_x_train_shape(fitted_models):
     """
     Tests that the function raises an error when X_train has incompatible
     shape with the fitted models (wrong number of features).
@@ -151,7 +151,7 @@ def test_invalid_x_train_shape():
         model_comparison([fitted_models['log'], fitted_models['rf']], invalid_X, fitted_models['y_train'], metric=metric, greater_is_better=True)
 
 
-def test_invalid_y_train_shape():
+def test_invalid_y_train_shape(fitted_models):
     """
     Tests that the function raises an error when y_train has incompatible
     shape with X_train (mismatched number of samples).
@@ -165,7 +165,7 @@ def test_invalid_y_train_shape():
         model_comparison([fitted_models['log'], fitted_models['rf']], fitted_models['X_train'], invalid_y, metric=metric, greater_is_better=True)
 
 
-def test_invalid_x_train_type():
+def test_invalid_x_train_type(fitted_models):
     """
     Tests that the function handles invalid X_train data types appropriately.
     """
