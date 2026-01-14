@@ -74,7 +74,7 @@ def model_comparison(models, X, y, metric="accuracy",greater_is_better=False):
             continue
         try:
             check_is_fitted(model)
-        except NotFittedError as exc:
+        except NotFittedError:
             warnings.warn(
                 f"Skipped model {model.__class__.__name__}: not fitted yet",
                 UserWarning
