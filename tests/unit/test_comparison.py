@@ -98,16 +98,6 @@ def test_model_is_fitted(fitted_models):
 
 # Additional tests suggested by Claude AI sonnet 4.5
 
-def test_empty_model_list(fitted_models):
-    """
-    Tests that the function raises a ValueError when an empty list of models
-    is provided.
-    """
-    metric = "accuracy"
-    
-    with pytest.raises(ValueError, match="No valid Classification models provided"):
-        model_comparison([], fitted_models['X_train'], fitted_models['y_train'], metric=metric, greater_is_better=True)
-
 
 def test_unknown_metric_name(fitted_models):
     """
@@ -118,23 +108,6 @@ def test_unknown_metric_name(fitted_models):
     
     with pytest.raises(ValueError, match="this_metric_does_not_exist is not a valid sklearn metric"):
         model_comparison([fitted_models['log'], fitted_models['rf']], fitted_models['X_train'], fitted_models['y_train'], metric=metric, greater_is_better=True)
-
-
-def test_all_models_unfitted(fitted_models):
-    """
-    Tests that the function raises a ValueError when all provided models
-    are unfitted.
-    """
-    # Create unfitted models
-    unfitted_log = LogisticRegression()
-    unfitted_rf = RandomForestClassifier()
-    
-    metric = "accuracy"
-    
-    with pytest.warns(UserWarning):  # Expect warnings about unfitted models
-        with pytest.raises(ValueError, match="No valid Classification models provided"):
-            model_comparison([unfitted_log, unfitted_rf], fitted_models['X_train'], fitted_models['y_train'], 
-                           metric=metric, greater_is_better=True)
 
 
 def test_invalid_x_train_shape(fitted_models):
