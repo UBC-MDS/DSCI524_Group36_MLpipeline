@@ -6,7 +6,7 @@ from sklearn.compose import make_column_transformer
 from sklearn.pipeline import make_pipeline
 
 
-def create_model_pipeline(X, numerical_feat, categorical_feat, model='lr'):
+def create_model_pipeline(X, numerical_feat=[], categorical_feat=[], model='lr'):
     """
     Create model pipeline for model of choice (logistic regression, SVC or
     random forest) with standardisation for numerical features and one-hot
