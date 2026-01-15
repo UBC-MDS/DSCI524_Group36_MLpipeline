@@ -1,3 +1,10 @@
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.pipeline import make_pipeline
+
+
 def create_model_pipeline(X, numerical_feat, categorical_feat, model='lr'):
     """
     Create model pipeline for model of choice (logistic regression, SVC or
@@ -35,4 +42,16 @@ def create_model_pipeline(X, numerical_feat, categorical_feat, model='lr'):
     >>> pipeline.fit(X, y)
     >>> predictions = pipeline.predict(X)
     """
-    pass
+    model_dict = {
+        'lr': LogisticRegression(),
+        'svc': SVC(),
+        'rf': RandomForestClassifier(random_state=123)
+    }
+
+    pipe = make_pipeline(
+        (StandardScaler(), numerical_feat),
+        (OneHotEncoder(drop='if_binary', handle_unknown='ignore'), categorical_feat),
+        model_dict[model]
+    )
+
+    return pipe
