@@ -103,7 +103,7 @@ def test_compute_model_metrics_multiple_metrics(fitted_model_data):
     assert "accuracy" in result.columns
     assert "f1" in result.columns
 
-# # Additional tests suggested by chatgpt
+# Additional tests suggested by chatgpt
 def test_compute_model_metrics_values_are_numeric(fitted_model_data):
     """
     Test that computed metric values are numeric.
