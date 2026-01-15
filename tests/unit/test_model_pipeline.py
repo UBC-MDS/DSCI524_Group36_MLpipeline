@@ -38,7 +38,15 @@ def pipeline(request, X):
     return output
 
 
-# Numerical categories not specified
+def test_create_model_pipeline(pipeline, X, y):
+    """Test that output of `create_model_pipeline` is a Pipeline object and
+    is able to fit to data."""
+    assert isinstance(pipeline, Pipeline)
+    pipeline.fit(X, y)
+    check_is_fitted(pipeline)
+
+
+# Edge case: numerical categories not specified
 @pytest.fixture(params=['lr', 'svc', 'rf'])
 def pipeline_empty_list(request, X):
     """
@@ -52,19 +60,34 @@ def pipeline_empty_list(request, X):
     return output
 
 
-def test_create_model_pipeline(pipeline, pipeline_empty_list):
-    "Test that output of `create_model_pipeline` is a Pipeline object."
-    assert isinstance(pipeline, Pipeline)
+def test_create_model_pipeline_empty_list(pipeline_empty_list, X, y):
+    """Test that output of `create_model_pipeline` is a Pipeline object and
+    is able to fit to data when numerical categories are not specified."""
     assert isinstance(pipeline_empty_list, Pipeline)
-
-
-def test_fit_model_pipeline(pipeline, pipeline_empty_list, X, y):
-    "Test that output of `create_model_pipeline` is able to fit to data."
-    pipeline.fit(X, y)
-    check_is_fitted(pipeline)
-
     pipeline_empty_list.fit(X, y)
     check_is_fitted(pipeline_empty_list)
+
+
+# Edge case: missing values
+def test_create_model_pipeline_missing_values():
+    "Test that missing values in `X` raises ValueError."
+    with pytest.raises(ValueError):
+        create_model_pipeline(
+            X=titanic,
+            numerical_feat=['age'],
+            categorical_feat=['sex']
+        )
+
+
+# Edge case: columns do not exist
+def test_create_model_pipeline_missing_col(X):
+    "Test that specifying columns that don't exist in `X` raises ValueError."
+    with pytest.raises(ValueError):
+        create_model_pipeline(
+            X=X,
+            numerical_feat=['age'],
+            categorical_feat=['sex', 'embarked']
+        )
 
 
 # Test input types
@@ -106,24 +129,4 @@ def test_create_model_pipeline_wrong_model(X):
             numerical_feat=['age'],
             categorical_feat=['sex'],
             model='logreg'
-        )
-
-
-def test_create_model_pipeline_missing_values():
-    "Test that missing values in `X` raises ValueError."
-    with pytest.raises(ValueError):
-        create_model_pipeline(
-            X=titanic,
-            numerical_feat=['age'],
-            categorical_feat=['sex']
-        )
-
-
-def test_create_model_pipeline_missing_col(X):
-    "Test that specifying columns that don't exist in `X` raises ValueError."
-    with pytest.raises(ValueError):
-        create_model_pipeline(
-            X=X,
-            numerical_feat=['age'],
-            categorical_feat=['sex', 'embarked']
         )
