@@ -17,7 +17,7 @@ def create_model_pipeline(X, numerical_feat=[], categorical_feat=[], model='lr')
     Parameters
     ----------
     X : pd.DataFrame
-        Data without target column.
+        Data without target column. Should not contain missing values.
     numerical_feat : list
         Names of numerical columns to be standardised.
     categorical_feat : list
@@ -54,9 +54,12 @@ def create_model_pipeline(X, numerical_feat=[], categorical_feat=[], model='lr')
 
     if not isinstance(categorical_feat, list):
         raise TypeError(f"Expected categorical_feat to be of type list, got {type(categorical_feat)}")
-    
+
     if model not in ['lr', 'svc', 'rf']:
         raise ValueError(f"Expected model to be 'lr', 'svc' or 'rf, got {model}")
+    
+    if X.isna().any().any():
+        raise ValueError(f"Dataframe contains missing values.")
 
     model_dict = {
         'lr': LogisticRegression(),

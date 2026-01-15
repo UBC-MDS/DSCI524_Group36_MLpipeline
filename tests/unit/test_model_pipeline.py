@@ -5,9 +5,9 @@ from sklearn.utils.validation import check_is_fitted
 import pytest
 
 # Prepare test data
-data = fetch_openml(name='titanic', version=1).frame
+titanic = fetch_openml(name='titanic', version=1).frame
 # Select X columns and remove rows with missing data
-data = data[['pclass', 'survived', 'sex', 'age']].dropna()
+data = titanic[['pclass', 'survived', 'sex', 'age']].dropna()
 
 
 @pytest.fixture()
@@ -90,4 +90,13 @@ def test_create_model_pipeline_wrong_model(X):
             numerical_feat=['age'],
             categorical_feat=['sex'],
             model='logreg'
+        )
+
+
+def test_create_model_pipeline_missing_values():
+    with pytest.raises(ValueError):
+        create_model_pipeline(
+            X=titanic,
+            numerical_feat=['age'],
+            categorical_feat=['sex']
         )
