@@ -6,11 +6,21 @@ import pytest
 # Prepare test data
 data = fetch_openml(name='titanic', version=1).frame
 # Select X columns and remove rows with missing data
-X = data[['pclass', 'sex', 'age']].dropna()
+data = data[['pclass', 'survived', 'sex', 'age']].dropna()
+
+
+@pytest.fixture()
+def X():
+    return data.drop(columns='survived')
+
+
+@pytest.fixture()
+def y():
+    return data.survived
 
 
 @pytest.fixture(params=['lr', 'svc', 'rf'])
-def pipeline(request):
+def pipeline(request, X):
     output = create_model_pipeline(
         X=X,
         numerical_feat=['age'],
