@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import make_column_transformer
 from sklearn.pipeline import make_pipeline
+import pandas as pd
 
 
 def create_model_pipeline(X, numerical_feat=[], categorical_feat=[], model='lr'):
@@ -34,8 +35,10 @@ def create_model_pipeline(X, numerical_feat=[], categorical_feat=[], model='lr')
 
     Raises
     ------
+    TypeError
+        If input types are wrong.
     ValueError
-        If input types are wrong or columns are not found in dataframe.
+        If model not in specified list or columns are not found in dataframe.
 
     Examples
     --------
@@ -43,6 +46,18 @@ def create_model_pipeline(X, numerical_feat=[], categorical_feat=[], model='lr')
     >>> pipeline.fit(X, y)
     >>> predictions = pipeline.predict(X)
     """
+    if not isinstance(X, pd.DataFrame):
+        raise TypeError(f"Expected X to be of type pd.DataFrame, got {type(X)}")
+
+    if not isinstance(numerical_feat, list):
+        raise TypeError(f"Expected numerical_feat to be of type list, got {type(numerical_feat)}")
+
+    if not isinstance(categorical_feat, list):
+        raise TypeError(f"Expected categorical_feat to be of type list, got {type(categorical_feat)}")
+    
+    if model not in ['lr', 'svc', 'rf']:
+        raise ValueError(f"Expected model to be 'lr', 'svc' or 'rf, got {model}")
+
     model_dict = {
         'lr': LogisticRegression(),
         'svc': SVC(),

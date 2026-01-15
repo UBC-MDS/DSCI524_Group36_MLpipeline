@@ -54,3 +54,40 @@ def test_fit_model_pipeline(pipeline, pipeline_empty_list, X, y):
 
     pipeline_empty_list.fit(X, y)
     check_is_fitted(pipeline_empty_list)
+
+
+def test_create_model_pipeline_not_dataframe():
+    with pytest.raises(TypeError):
+        create_model_pipeline(
+            X=[1, 2, 3],
+            numerical_feat=['age'],
+            categorical_feat=['sex']
+        )
+
+
+def test_create_model_pipeline_num_not_list(X):
+    with pytest.raises(TypeError):
+        create_model_pipeline(
+            X=X,
+            numerical_feat=1,
+            categorical_feat=['sex']
+        )
+
+
+def test_create_model_pipeline_cat_not_list(X):
+    with pytest.raises(TypeError):
+        create_model_pipeline(
+            X=X,
+            numerical_feat=['age'],
+            categorical_feat=1
+        )
+
+
+def test_create_model_pipeline_wrong_model(X):
+    with pytest.raises(ValueError):
+        create_model_pipeline(
+            X=X,
+            numerical_feat=['age'],
+            categorical_feat=['sex'],
+            model='logreg'
+        )
