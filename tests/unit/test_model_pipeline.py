@@ -9,13 +9,17 @@ data = fetch_openml(name='titanic', version=1).frame
 X = data[['pclass', 'sex', 'age']].dropna()
 
 
-@pytest.mark.parametrize("model", ['lr', 'svc', 'rf'])
-def test_create_model_pipeline(model):
-    # Expected use case
+@pytest.fixture(params=['lr', 'svc', 'rf'])
+def pipeline(request):
     output = create_model_pipeline(
         X=X,
         numerical_feat=['age'],
         categorical_feat=['sex'],
-        model=model
+        model=request.param
     )
-    assert isinstance(output, Pipeline)
+    return output
+
+
+def test_create_model_pipeline(pipeline):
+    # Expected use case
+    assert isinstance(pipeline, Pipeline)
