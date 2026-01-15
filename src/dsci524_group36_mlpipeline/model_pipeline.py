@@ -2,6 +2,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import make_column_transformer
 from sklearn.pipeline import make_pipeline
 
 
@@ -48,9 +49,13 @@ def create_model_pipeline(X, numerical_feat, categorical_feat, model='lr'):
         'rf': RandomForestClassifier(random_state=123)
     }
 
-    pipe = make_pipeline(
+    preprocessor = make_column_transformer(
         (StandardScaler(), numerical_feat),
-        (OneHotEncoder(drop='if_binary', handle_unknown='ignore'), categorical_feat),
+        (OneHotEncoder(drop='if_binary', handle_unknown='ignore'), categorical_feat)
+    )
+
+    pipe = make_pipeline(
+        preprocessor,
         model_dict[model]
     )
 
