@@ -38,7 +38,7 @@ def test_eda_valid_numeric_column(iris_df):
 
 def test_eda_numeric_column_with_missing_values():
     """
-    Tests that eda correctly handles numeric columns containing NA values by excluding them from summary statistics
+    Tests that eda correctly handles numeric columns containing NA values by excluding them from summary statistics and still makes proper matplotlib object
     """
     df = pd.DataFrame({"x": [1, 2, None, 4, 5]})
     stats, hist = eda(df, "x")
@@ -65,10 +65,10 @@ def test_eda_non_numeric_column():
     """
     Tests that eda raises a TypeError when the specified column is non-numeric and cannot be plotted as a histogram
     """
-    df = pd.DataFrame({"cat": ["a", "b", "c", "d"]})
+    df = pd.DataFrame({"category": ["a", "b", "c", "d"]})
 
     with pytest.raises(TypeError, match="must be numeric"):
-        eda(df, "cat")
+        eda(df, "category")
 
 def test_eda_all_missing_column():
     """
@@ -81,7 +81,7 @@ def test_eda_all_missing_column():
 
 def test_eda_single_value_column():   #suggested by ChatGPT5.2 to add this test
     """
-    Tests that eda correctly handles a numeric column containing a single repeated value
+    Tests that eda correctly handles a numeric column containing a single repeated value and still makes matplotlib object
     """
     df = pd.DataFrame({"x": [10, 10, 10, 10]})
 
