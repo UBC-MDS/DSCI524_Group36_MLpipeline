@@ -17,6 +17,9 @@ from dsci524_group36_mlpipeline.eda import eda
 
 @pytest.fixture
 def iris_df():
+    """
+    fixture that creates a pandas DataFrame using the iris dataset, target column titled 'target'
+    """
     iris = load_iris() 
     df = pd.DataFrame(iris.data, columns=iris.feature_names) 
     df["target"] = iris.target                            
@@ -25,6 +28,9 @@ def iris_df():
 
 
 def test_eda_valid_numeric_column(iris_df):
+    '''
+    Test that eda() function returns correct types and values for numeric columns
+    '''
     stats, hist = eda(iris_df, "sepal length (cm)")
     assert isinstance(stats, pd.Series)
     assert stats["count"] == len(iris_df)
