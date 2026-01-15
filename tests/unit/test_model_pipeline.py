@@ -100,3 +100,12 @@ def test_create_model_pipeline_missing_values():
             numerical_feat=['age'],
             categorical_feat=['sex']
         )
+
+
+def test_create_model_pipeline_missing_col(X):
+    with pytest.raises(ValueError):
+        create_model_pipeline(
+            X=X,
+            numerical_feat=['age'],
+            categorical_feat=['sex', 'embarked']
+        )

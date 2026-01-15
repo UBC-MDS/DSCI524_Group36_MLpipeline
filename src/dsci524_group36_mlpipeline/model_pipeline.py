@@ -46,6 +46,7 @@ def create_model_pipeline(X, numerical_feat=[], categorical_feat=[], model='lr')
     >>> pipeline.fit(X, y)
     >>> predictions = pipeline.predict(X)
     """
+    # Input checks
     if not isinstance(X, pd.DataFrame):
         raise TypeError(f"Expected X to be of type pd.DataFrame, got {type(X)}")
 
@@ -59,8 +60,16 @@ def create_model_pipeline(X, numerical_feat=[], categorical_feat=[], model='lr')
         raise ValueError(f"Expected model to be 'lr', 'svc' or 'rf, got {model}")
     
     if X.isna().any().any():
-        raise ValueError(f"Dataframe contains missing values.")
+        raise ValueError("Dataframe contains missing values.")
 
+    missing_cols = (
+        [feat for feat in numerical_feat if feat not in X.columns]
+        + [feat for feat in categorical_feat if feat not in X.columns]
+    )
+    if len(missing_cols) != 0:
+        raise ValueError(f"{missing_cols} not found in dataframe")
+
+    # Build pipeline
     model_dict = {
         'lr': LogisticRegression(),
         'svc': SVC(),
