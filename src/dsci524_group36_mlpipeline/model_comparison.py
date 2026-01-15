@@ -23,6 +23,10 @@ def model_comparison(models, X, y, metric="accuracy",greater_is_better=False):
         Evaluation metric used for comparison. Must be a valid
         scikit-learn classification metric (e.g. "accuracy",
         "f1", "precision", "recall").
+    greater_is_better: bool, default=False
+        Ensures proper comparison is performed for our chosen metric
+        If False, error metric, lower error is better
+        If True, accuracy measure. Higher accuracy is better.
 
     Returns
     -------
@@ -43,3 +47,51 @@ def model_comparison(models, X, y, metric="accuracy",greater_is_better=False):
     ...           DecisionTreeClassifier().fit(X, y)]
     >>> best_model = model_comparison(models, X, y, metric="accuracy")
     """
+    from sklearn import metrics
+    from sklearn.base import is_classifier
+    import numpy as np
+    import warnings
+    from sklearn.utils.validation import check_is_fitted
+    from sklearn.exceptions import NotFittedError
+
+    if not isinstance(metric, str):
+        raise TypeError(f"Expected metric input to be str")
+
+    if not hasattr(metrics, metric):
+        raise ValueError(f"{metric} is not a valid sklearn metric")
+    
+    metric_fn = getattr(metrics, metric)
+
+    valid_models = []
+    scores = []
+
+    for model in models:
+        if not is_classifier(model):
+            warnings.warn(
+                f"Skipped model {model.__class__.__name__}: not a classifier",
+                UserWarning
+            )
+            continue
+        try:
+            check_is_fitted(model)
+        except NotFittedError:
+            warnings.warn(
+                f"Skipped model {model.__class__.__name__}: not fitted yet",
+                UserWarning
+            )
+            continue
+        else:   
+            pred = model.predict(X)
+            score = metric_fn(y,pred)
+            valid_models.append(model)
+            scores.append(score)
+    
+    if not scores:
+        raise ValueError("No valid Classification models provided")
+    
+    if greater_is_better:
+        best_idx = np.argmax(scores)
+    else:
+        best_idx = np.argmin(scores)
+
+    return valid_models[best_idx]
