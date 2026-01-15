@@ -3,7 +3,7 @@ def create_model_pipeline(X, numerical_feat, categorical_feat, model='lr'):
     Create model pipeline for model of choice (logistic regression, SVC or
     random forest) with standardisation for numerical features and one-hot
     encoding for categorical features. Any remaining features are passed
-    through.
+    through with no preprocessing.
 
     Parameters
     ----------
@@ -22,7 +22,7 @@ def create_model_pipeline(X, numerical_feat, categorical_feat, model='lr'):
     Returns
     -------
     sklearn.pipeline.Pipeline
-        Pipeline with standardisation, one-hot encoding and specified model.
+        Unfitted pipeline with standardisation, one-hot encoding and specified model.
 
     Raises
     ------
@@ -31,6 +31,8 @@ def create_model_pipeline(X, numerical_feat, categorical_feat, model='lr'):
 
     Examples
     --------
-    >>> create_model_pipeline(X, ['age'], ['sex'], 'lr')
+    >>> pipeline = create_model_pipeline(X, ['age'], ['sex'], 'lr')
+    >>> pipeline.fit(X, y)
+    >>> predictions = pipeline.predict(X)
     """
     pass
