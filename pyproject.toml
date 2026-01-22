@@ -33,7 +33,14 @@ classifiers = [
 # TODO: add keywords
 keywords = []
 # TODO: add dependencies
-dependencies = []
+dependencies = [
+    'pandas == 2.3.3',
+    'scikit-learn',
+    'numpy',
+    'matplotlib',
+    'ruff',
+]
+
 
 [project.urls]
 Homepage = "https://github.com/UBC-MDS/dsci524_group36_mlpipeline"
@@ -52,13 +59,7 @@ dev = [
 ]
 
 docs = [
-    "sphinx~=8.0",
-    "myst-parser>=4.0",
-    "pydata-sphinx-theme~=0.16",
-    "sphinx-autobuild>=2024.10.3",
-    "sphinx-autoapi>=3.6.0",
-    "sphinx_design>=0.6.1",
-    "sphinx-copybutton>=0.5.2",
+    "quartodoc"
 ]
 
 build = [
@@ -71,6 +72,7 @@ tests = [
     "pytest-raises",
     "pytest-randomly",
     "pytest-xdist",
+    "pandas"
 ]
 
 

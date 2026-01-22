@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Machine Learning Pipeline"
+  navbar:
+    left:
+      - text: "Reference"
+        href: reference/index.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+
+quartodoc:
+  package: dsci524_group36_mlpipeline
+  dir: reference
+  sections:
+    - title: Machine Learning Pipeline
+      desc: Functions to help you build a machine learning pipeline
+      contents:
+        - eda.eda
+        - compute_model_metrics.compute_model_metrics
+        - model_comparison.model_comparison
+        - model_pipeline.create_model_pipeline
