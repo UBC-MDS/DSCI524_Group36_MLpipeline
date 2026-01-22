@@ -89,7 +89,7 @@ def test_model_comparison_returns_best_accuracy_model():
     logreg = LogisticRegression(solver="liblinear")
     logreg.fit(X, y)
 
-    best = model_comparison([dummy, logreg], X, y, metric="accuracy", greater_is_better=True)
+    best = model_comparison([dummy, logreg], X, y, metric="accuracy_score", greater_is_better=True)
 
     assert best is logreg  
 
