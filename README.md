@@ -40,6 +40,49 @@ To use dsci524_group36_mlpipeline in your code:
 >>> dsci524_group36_mlpipeline.model_comparison(objects, x, y, metric)
 ```
 
+## Development setup
+To set up the development environment, clone the repository and create the conda environment using the provided environment.yml file:
+```bash
+git clone https://github.com/UBC-MDS/DSCI524_Group36_MLpipeline.git
+cd DSCI524_Group36_MLpipeline
+conda env create -f environment.yml
+conda activate dsci524_group36_mlpipeline
+```
+
+## Install package (development mode)
+Install the package in editable mode with testing dependencies:
+```bash
+pip install -e ".[tests]"
+```
+This allows developers to make changes to the source code while using the package.
+
+## Run tests
+To run the unit tests locally, use:
+```bash
+pytest
+```
+Test coverage can be checked using:
+```bash
+pytest --cov
+```
+
+## Build documentation
+Package documentation is built using quartodoc and Quarto.
+
+To build the documentation locally:
+```bash
+quarto render docs
+```
+The rendered documentation will be available in the docs/_site directory.
+
+## Deploy documentation (automated)
+Documentation is automatically deployed to GitHub Pages using a GitHub Actions workflow whenever changes are pushed to the main branch.
+No manual deployment steps are required.
+
+## Documentation
+The full package documentation, including function references and usage examples, is available at:
+https://ubc-mds.github.io/DSCI524_Group36_MLpipeline/reference/
+
 ## Copyright
 - The template for the repository is from [link](https://www.pyopensci.org/python-package-guide/tutorials/create-python-package.html#step-1-set-up-the-package-directory-structure)
 - Copyright © 2026 Bright, Charlene, Claudia, Tiffany.
