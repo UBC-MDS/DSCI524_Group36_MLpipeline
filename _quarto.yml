@@ -15,7 +15,7 @@ format:
     toc: true
 
 quartodoc:
-  package: Group36_MLPipeline
+  package: Group36_MLpipeline
   dir: reference
   sections:
     - title: Machine Learning Pipeline
