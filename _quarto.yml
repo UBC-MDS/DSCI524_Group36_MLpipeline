@@ -15,13 +15,12 @@ format:
     toc: true
 
 quartodoc:
-  package: DSCI524_Group36_MLpipeline
+  package: dsci524_group36_mlpipeline
   dir: reference
   sections:
     - title: Machine Learning Pipeline
       desc: Functions to help you build a machine learning pipeline
       contents:
-        #- clothing.calculate_warmth_score
         - eda.eda
         - compute_model_metrics.compute_model_metrics
         - model_comparison.model_comparison
