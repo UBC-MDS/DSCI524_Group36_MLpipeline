@@ -72,7 +72,26 @@ def test_function_output(fitted_models):
     
     assert is_classifier(best) 
 
-        
+def test_model_comparison_returns_best_accuracy_model():
+    """
+    Tests that model_comparison returns the classifier with the highest accuracy
+    when greater_is_better=True.
+    """
+    import numpy as np
+    from sklearn.dummy import DummyClassifier
+
+    X = np.array([[0], [1], [0], [1]])
+    y = np.array([0, 1, 0, 1])
+
+    dummy = DummyClassifier(strategy="most_frequent")
+    dummy.fit(X, y)
+
+    logreg = LogisticRegression(solver="liblinear")
+    logreg.fit(X, y)
+
+    best = model_comparison([dummy, logreg], X, y, metric="accuracy", greater_is_better=True)
+
+    assert best is logreg  
 
 def test_no_classifier_found(fitted_models):
     """
