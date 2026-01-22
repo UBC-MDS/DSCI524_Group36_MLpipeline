@@ -97,3 +97,12 @@ def test_eda_non_string_column_name(iris_df):   #suggested by ChatGPT5.2 to add 
     """
     with pytest.raises(TypeError, match="must be a string"):
         eda(iris_df, 123)
+
+def test_eda_empty_dataframe():
+    """
+    Tests that eda raises a ValueError when the DataFrame is empty (no rows)
+    """
+    df = pd.DataFrame({"x": []})  #empty DataFrame with the column present
+    
+    with pytest.raises(ValueError):
+        eda(df, "x")
