@@ -20,6 +20,10 @@ jobs:
         with:
           python-version: '3.13'
 
+      - name: Install Hatch
+        run: pip install hatch
+
+
       - name: Build distribution
         run: hatch build
 
