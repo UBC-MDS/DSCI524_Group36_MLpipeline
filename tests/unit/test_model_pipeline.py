@@ -38,10 +38,13 @@ def pipeline(request, X):
     return output
 
 
-def test_create_model_pipeline(pipeline, X, y):
-    """Test that output of `create_model_pipeline` is a Pipeline object and
-    is able to fit to data."""
+def test_create_model_pipeline(pipeline):
+    """Test that output of `create_model_pipeline` is a Pipeline object."""
     assert isinstance(pipeline, Pipeline)
+
+
+def test_fit_model_pipeline(pipeline, X, y):
+    """Test that output of `create_model_pipeline` is able to fit to data."""
     pipeline.fit(X, y)
     check_is_fitted(pipeline)
 
