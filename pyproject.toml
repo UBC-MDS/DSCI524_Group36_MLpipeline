@@ -14,7 +14,7 @@ requires = ["hatchling"]
 name = "dsci524_group36_mlpipeline"
 description = "A machine learning pipeline project for DSCI 524"
 # You can chose to use dynamic versioning with hatch or static where you add it manually.
-version = "0.1.5"  # static versioning
+version = "0.1.6"  # static versioning
 
 authors = [
     { name = "Bright, Charlene, Claudia, Tiffany" },
