@@ -49,7 +49,7 @@ def eda(X, y):
     """
 
     import pandas as pd
-    import matplotlib.pyplot as plt
+    #import matplotlib.pyplot as plt
     from pandas.api.types import is_numeric_dtype 
 
     if not isinstance(X, pd.DataFrame):

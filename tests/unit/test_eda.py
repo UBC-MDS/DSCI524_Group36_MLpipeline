@@ -13,6 +13,8 @@ import matplotlib.axes
 import pytest
 from sklearn.datasets import load_iris
 
+import numpy as np
+
 from dsci524_group36_mlpipeline.eda import eda
 
 @pytest.fixture
@@ -102,7 +104,7 @@ def test_eda_empty_dataframe():
     """
     Tests that eda raises a ValueError when the DataFrame is empty (no rows)
     """
-    df = pd.DataFrame({"x": []})  #empty DataFrame with the column present
+    df = pd.DataFrame({"x": []})  # Empty DataFrame with the column present
     
     with pytest.raises(ValueError):
         eda(df, "x")

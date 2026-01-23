@@ -12,10 +12,10 @@ requires = ["hatchling"]
 
 [project]
 name = "dsci524_group36_mlpipeline"
+description = "A machine learning pipeline project for DSCI 524"
 # You can chose to use dynamic versioning with hatch or static where you add it manually.
-version = "0.1.0"
+version = "0.1.4"  # static versioning
 
-description = ""
 authors = [
     { name = "Bright, Charlene, Claudia, Tiffany" },
 ]
@@ -41,6 +41,10 @@ dependencies = [
     'ruff',
 ]
 
+[tool.hatch.version]
+version = "0.1.4"    # starting version
+style = "semver"
+dev-version = "auto"
 
 [project.urls]
 Homepage = "https://github.com/UBC-MDS/dsci524_group36_mlpipeline"
@@ -183,3 +187,5 @@ features = [
 
 [tool.hatch.envs.audit.scripts]
 check = ["pip-audit"]
+
+
