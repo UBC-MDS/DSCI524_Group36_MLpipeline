@@ -114,3 +114,20 @@ def test_compute_model_metrics_values_are_numeric(fitted_model_data):
     result = compute_model_metrics(model, X, y, metrics)
 
     assert isinstance(result.iloc[0]["accuracy"], (int, float))
+
+def test_compute_model_metrics_output_structure(fitted_model_data):
+    """
+    Test that the output DataFrame has a single row with metric names as columns
+    and a predictable index.
+    """
+    model, X, y = fitted_model_data
+    metrics = {
+        "accuracy": accuracy_score,
+        "f1": partial(f1_score, average="macro"),
+    }
+
+    result = compute_model_metrics(model, X, y, metrics)
+    assert result.shape[0] == 1
+    assert set(result.columns) == set(metrics.keys())
+    assert len(result.index) == 1
+
