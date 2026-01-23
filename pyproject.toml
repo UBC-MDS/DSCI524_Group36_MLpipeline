@@ -183,3 +183,8 @@ features = [
 
 [tool.hatch.envs.audit.scripts]
 check = ["pip-audit"]
+
+[tool.hatch.version]
+version = "0.1.0"
+style = "semver"
+dev-version = "auto"
