@@ -55,7 +55,7 @@ def model_comparison(models, X, y, metric="accuracy",greater_is_better=False):
     from sklearn.exceptions import NotFittedError
 
     if not isinstance(metric, str):
-        raise TypeError(f"Expected metric input to be str")
+        raise TypeError("Expected metric input to be str")
 
     if not hasattr(metrics, metric):
         raise ValueError(f"{metric} is not a valid sklearn metric")
