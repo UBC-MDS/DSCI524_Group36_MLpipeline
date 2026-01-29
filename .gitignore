@@ -245,3 +245,5 @@ cython_debug/
 _version.py
 
 /.quarto/
+
+src/dsci524_group36_mlpipeline/__version__.py

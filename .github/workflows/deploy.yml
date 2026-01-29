@@ -5,6 +5,9 @@ on:
   pull_request:
     branches: [main]
   #tags: [ "v*.*.*" ]
+  push: 
+    tags:
+      - "v*"
   
   workflow_dispatch:
 
@@ -15,7 +18,7 @@ jobs:
     steps:
       - name: Check-out repository
         uses: actions/checkout@v2
-
+        
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -37,6 +40,9 @@ jobs:
     steps:
       - name: Check-out repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # <--- CRITICAL: Required for Hatch to see the tag!
+
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -58,6 +64,8 @@ jobs:
             user: __token__
             password: ${{ secrets.TEST_PYPI_API_TOKEN }}
             attestations: false
+            verbose: true
+      
 
 
 
