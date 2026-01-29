@@ -41,8 +41,17 @@ def model_comparison(models, X, y, metric="accuracy",greater_is_better=False):
 
     Examples
     --------
+    >>> from sklearn.datasets import make_classification
     >>> from sklearn.linear_model import LogisticRegression
     >>> from sklearn.tree import DecisionTreeClassifier
+    >>>X, y = make_classification(
+    n_samples=200,
+    n_features=5,
+    n_informative=3,
+    n_redundant=0,
+    n_classes=2,
+    random_state=42
+    )
     >>> models = [LogisticRegression().fit(X, y),
     ...           DecisionTreeClassifier().fit(X, y)]
     >>> best_model = model_comparison(models, X, y, metric="accuracy")
