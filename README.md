@@ -1,8 +1,10 @@
 # Welcome to DSCI524_Group36_MLpipeline
 
+
 |        |        |
 |--------|--------|
-| Package | [![Latest PyPI Version](https://img.shields.io/pypi/v/dsci524_group36_mlpipeline.svg)](https://pypi.org/project/dsci524_group36_mlpipeline/) [![Supported Python Versions](https://img.shields.io/pypi/pyversions/dsci524_group36_mlpipeline.svg)](https://pypi.org/project/dsci524_group36_mlpipeline/)  |
+| CI/CD  | [![CI](https://github.com/UBC-MDS/DSCI524_Group36_MLpipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/UBC-MDS/DSCI524_Group36_MLpipeline/actions/workflows/ci.yml) [![codecov](https://codecov.io/gh/UBC-MDS/DSCI524_Group36_MLpipeline/graph/badge.svg)](https://codecov.io/gh/UBC-MDS/DSCI524_Group36_MLpipeline) |
+| Package | [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/) |
 | Meta   | [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md) |
 
 
