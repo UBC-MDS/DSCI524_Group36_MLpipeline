@@ -1,9 +1,10 @@
 name: deploy-test-pypi
 
 on:
-  # push:
-  pull_request:
+  push:
     branches: [main]
+  # pull_request:
+  #   branches: [main]
   #tags: [ "v*.*.*" ]
   push: 
     tags:
@@ -32,6 +33,9 @@ jobs:
       - name: Run tests with coverage
         run: |
           pytest --cov --cov-report=term --cov-branch
+      
+      - name: Run ruff formatter
+        run: ruff check src/
 
   build-deploy:
     needs: unit-test-pytest
