@@ -6,6 +6,8 @@ website:
   title: "Machine Learning Pipeline"
   navbar:
     left:
+      - text: "Contributing"
+        href: CONTRIBUTING.md
       - text: "Reference"
         href: reference/index.qmd
 
