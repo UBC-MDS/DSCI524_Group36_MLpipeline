@@ -62,6 +62,7 @@ from sklearn.datasets import make_classification
 from sklearn.tree import DecisionTreeClassifier
 
 from dsci524_group36_mlpipeline.eda import eda
+from dsci524_group36_mlpipeline.model_pipeline import create_model_pipeline
 from dsci524_group36_mlpipeline.compute_model_metrics import compute_model_metrics 
 from dsci524_group36_mlpipeline.model_comparison import model_comparison
 
@@ -84,7 +85,7 @@ plt.show()
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=123)
 
 # Train model
-log = LogisticRegression(max_iter=200)
+log = create_model_pipeline(X_train, numerical_feat=['sepal_length'], model='lr')
 log.fit(X_train, y_train)
 
 # Define metrics
