@@ -2,42 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/CODE_OF_CONDUCT.html</loc>
-    <lastmod>2026-01-30T22:30:56.512Z</lastmod>
+    <lastmod>2026-01-30T23:05:28.731Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/reference/compute_model_metrics.compute_model_metrics.html</loc>
-    <lastmod>2026-01-30T22:31:51.141Z</lastmod>
+    <lastmod>2026-01-30T23:06:23.905Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/reference/index.html</loc>
-    <lastmod>2026-01-30T22:31:51.109Z</lastmod>
+    <lastmod>2026-01-30T23:06:23.870Z</lastmod>
   </url>
   <url>
-    <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/CONTRIBUTING.html</loc>
-    <lastmod>2026-01-30T22:30:56.512Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/tutorial.html</loc>
-    <lastmod>2026-01-30T22:30:56.520Z</lastmod>
-  </url>
-  <url>
-    <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/CHANGELOG.html</loc>
-    <lastmod>2026-01-30T22:30:56.512Z</lastmod>
+    <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/index.html</loc>
+    <lastmod>2026-01-30T23:05:28.738Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/DEVELOPMENT.html</loc>
-    <lastmod>2026-01-30T22:30:56.512Z</lastmod>
+    <lastmod>2026-01-30T23:05:28.731Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/CHANGELOG.html</loc>
+    <lastmod>2026-01-30T23:05:28.731Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/tutorial.html</loc>
+    <lastmod>2026-01-30T23:05:28.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/CONTRIBUTING.html</loc>
+    <lastmod>2026-01-30T23:05:28.731Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/reference/model_comparison.model_comparison.html</loc>
-    <lastmod>2026-01-30T22:31:51.147Z</lastmod>
+    <lastmod>2026-01-30T23:06:23.913Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/reference/eda.eda.html</loc>
-    <lastmod>2026-01-30T22:31:51.134Z</lastmod>
+    <lastmod>2026-01-30T23:06:23.899Z</lastmod>
   </url>
   <url>
     <loc>https://UBC-MDS.github.io/DSCI524_Group36_MLpipeline/reference/model_pipeline.create_model_pipeline.html</loc>
-    <lastmod>2026-01-30T22:31:51.154Z</lastmod>
+    <lastmod>2026-01-30T23:06:23.920Z</lastmod>
   </url>
 </urlset>
