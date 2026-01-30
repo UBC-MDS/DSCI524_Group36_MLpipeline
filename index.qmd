@@ -1,0 +1,8 @@
+---
+title: "Machine Learning Pipeline"
+format:
+  html:
+    toc: true
+---
+
+{{< include tutorial.qmd >}}
