@@ -47,13 +47,17 @@ Below is a minimal, runnable example showing how to train a model and use functi
 
 ```python
 import pandas as pd
+import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score
 from sklearn.datasets import make_classification
 from sklearn.tree import DecisionTreeClassifier
 
-from dsci524_group36_mlpipeline.compute_model_metrics import compute_model_metrics, model_comparison, eda
+from dsci524_group36_mlpipeline.eda import eda
+from dsci524_group36_mlpipeline.model_pipeline import create_model_pipeline
+from dsci524_group36_mlpipeline.compute_model_metrics import compute_model_metrics 
+from dsci524_group36_mlpipeline.model_comparison import model_comparison
 
 # Load example dataset
 df = pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv")
@@ -61,11 +65,20 @@ df = pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/
 X = df.drop(columns=["species"])
 y = df["species"]
 
+# Using eda function
+stats, ax = eda(df, "sepal_length")
+print("Summary Statistics:")
+print(stats)
+
+# Customize the plot using the returned matplotlib Axes object
+ax.set_title("Distribution of Sepal Length")
+plt.show()
+
 # Train-test split
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=123)
 
 # Train model
-log = LogisticRegression(max_iter=200)
+log = create_model_pipeline(X_train, numerical_feat=['sepal_length'], model='lr')
 log.fit(X_train, y_train)
 
 # Define metrics
@@ -82,17 +95,7 @@ print(results)
 # Using Model Comparison Function
 dt = DecisionTreeClassifier()
 dt.fit(X_train, y_train)
-best_model = model_comparison([log, dt], x, y, metric)
-
-
-# Using eda function
-stats, ax = eda(df, "sepal_length")
-print("Summary Statistics:")
-print(stats)
-
-# Customize the plot using the returned matplotlib Axes object
-ax.set_title("Distribution of Sepal Length")
-plt.show()
+best_model = model_comparison([log, dt], X, y, metric='accuracy_score')
 ```
 
 ## Development setup
