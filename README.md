@@ -101,7 +101,7 @@ To set up the development environment, clone the repository and create the conda
 git clone https://github.com/UBC-MDS/DSCI524_Group36_MLpipeline.git
 cd DSCI524_Group36_MLpipeline
 conda env create -f environment.yml
-conda activate dsci524_group36_mlpipeline
+conda activate 524
 ```
 
 ## Install package (development mode)
