@@ -50,15 +50,17 @@ To use dsci524_group36_mlpipeline in your code:
 
 ## Quick Start Example
 
-Below is a minimal, runnable example showing how to train a model and compute evaluation metrics using our package.
+Below is a minimal, runnable example showing how to train a model and use functions from our package.
 
 ```python
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score
+from sklearn.datasets import make_classification
+from sklearn.tree import DecisionTreeClassifier
 
-from dsci524_group36_mlpipeline.compute_model_metrics import compute_model_metrics
+from dsci524_group36_mlpipeline.compute_model_metrics import compute_model_metrics, model_comparison, eda
 
 # Load example dataset
 df = pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv")
@@ -70,8 +72,8 @@ y = df["species"]
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=123)
 
 # Train model
-model = LogisticRegression(max_iter=200)
-model.fit(X_train, y_train)
+log = LogisticRegression(max_iter=200)
+log.fit(X_train, y_train)
 
 # Define metrics
 metrics = {
@@ -80,14 +82,24 @@ metrics = {
 }
 
 # Compute metrics
-results = compute_model_metrics(model, X_test, y_test, metrics)
+results = compute_model_metrics(log, X_test, y_test, metrics)
 print(results)
-```
 
-## Example usage of model comparison
-```python
-from dsci524_group36_mlpipeline import model_comparison
-best_model = model_comparison(model_list, X, y, metric="accuracy")
+
+# Using Model Comparison Function
+dt = DecisionTreeClassifier()
+dt.fit(X_train, y_train)
+best_model = model_comparison([log, dt], x, y, metric)
+
+
+# Using eda function
+stats, ax = eda(df, "sepal_length")
+print("Summary Statistics:")
+print(stats)
+
+# Customize the plot using the returned matplotlib Axes object
+ax.set_title("Distribution of Sepal Length")
+plt.show()
 ```
 
 ## Development setup
