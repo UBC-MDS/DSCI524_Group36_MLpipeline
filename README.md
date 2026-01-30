@@ -8,7 +8,7 @@
 | Meta   | [![Code of Conduct](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md) |
 
 
-DSCI524_Group36_MLpipeline is a project that simplifies some of the steps in the machine learning process and provides a model comparison function. These methods cover simple tasks in exploratory data analysis (EDA), pipeline creation, computation of metrics and model comparison. This serves ML practitioners with a quick fix to most tasks they may need to perform in the development process without having to import multiple packages.
+DSCI524_Group36_MLpipeline is a project that simplifies some of the steps in the machine learning process and provides a model comparison function. These methods cover simple tasks in exploratory data analysis (EDA), pipeline creation, computation of metrics and model comparison. This package helps machine learning practitioners streamline common workflow steps without needing to rely on multiple external libraries.
 
 ## Methods available in this package (Function Documentation)
 
@@ -27,12 +27,18 @@ What makes our package different from others is that it combines multiple steps 
 - Bright Arafat Bello
 - Tiffany Chu
 
-## Get started
+## Installation
 
-You can install this package into your preferred Python environment using pip:
+### Install from TestPyPI 
 
 ```bash
-$ pip install dsci524_group36_mlpipeline
+pip install -i https://test.pypi.org/simple/ dsci524_group36_mlpipeline
+```
+
+### Install from PyPI
+
+```bash
+pip install dsci524_group36_mlpipeline
 ```
 
 To use dsci524_group36_mlpipeline in your code:
@@ -40,6 +46,48 @@ To use dsci524_group36_mlpipeline in your code:
 ```python
 >>> import dsci524_group36_mlpipeline
 >>> dsci524_group36_mlpipeline.model_comparison(objects, x, y, metric)
+```
+
+## Quick Start Example
+
+Below is a minimal, runnable example showing how to train a model and compute evaluation metrics using our package.
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, f1_score
+
+from dsci524_group36_mlpipeline.compute_model_metrics import compute_model_metrics
+
+# Load example dataset
+df = pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv")
+
+X = df.drop(columns=["species"])
+y = df["species"]
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=123)
+
+# Train model
+model = LogisticRegression(max_iter=200)
+model.fit(X_train, y_train)
+
+# Define metrics
+metrics = {
+    "accuracy": accuracy_score,
+    "f1_macro": lambda y_true, y_pred: f1_score(y_true, y_pred, average="macro"),
+}
+
+# Compute metrics
+results = compute_model_metrics(model, X_test, y_test, metrics)
+print(results)
+```
+
+## Example usage of model comparison
+```python
+from dsci524_group36_mlpipeline import model_comparison
+best_model = model_comparison(model_list, X, y, metric="accuracy")
 ```
 
 ## Development setup
