@@ -46,6 +46,20 @@ def eda(X, y):
     This function creates a matplotlib plot but does not display it. To render
     the histogram, call `matplotlib.pyplot.show()` after invoking this
     function.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> import matplotlib.pyplot as plt
+    >>> # Create sample data
+    >>> data = pd.DataFrame({'val': [1, 2, 2, 3, 3, 3, 4, 4, 5]})
+    >>> # Run EDA
+    >>> stats, ax = eda(data, 'val')
+    >>> # The plot object (ax) can be used to tweak the visual
+    >>> ax.set_title("Target Distribution")
+    >>> # The plot will then display
+    >>> # plt.show()
+    
     """
 
     import pandas as pd
