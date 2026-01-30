@@ -108,3 +108,12 @@ Before you submit a pull request, check that it meets these guidelines:
    new functionality into a function with a docstring.
 3. Your pull request will automatically be checked by the full test suite.
    It needs to pass all of them before it can be considered for merging.
+
+
+### Learning
+
+We learnt how to do packaging using hatch and updating the `pyproject.toml` file.
+
+We learnt how to do CI/CD by writing jobs in `.yml` files in order to automatically run tests, style checking, deploy to PyPI, and publish on GitHub pages. We also learnt to use GitHub project boards.
+
+We think testing, style checking and CI/CD will definitely be used in future projects, because it is important to test your code, ensure it is readable by others, and automating processes will reduce human error. 
