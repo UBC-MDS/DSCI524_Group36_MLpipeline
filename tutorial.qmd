@@ -2,7 +2,9 @@
 title: "Tutorial"
 ---
 
-How to use my package:
+DSCI524_Group36_MLpipeline is a project that simplifies some of the steps in the machine learning process and provides a model comparison function. These methods cover simple tasks in exploratory data analysis (EDA), pipeline creation, computation of metrics and model comparison. This package helps machine learning practitioners streamline common workflow steps without needing to rely on multiple external libraries.
+
+Here is a demo of using this package to build an ML pipeline for Iris dataset:
 
 ```python
 import pandas as pd
