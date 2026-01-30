@@ -6,6 +6,8 @@ website:
   title: "Machine Learning Pipeline"
   navbar:
     left:
+      - text: "Tutorial"
+        href: tutorial.qmd
       - text: "Contributing"
         href: CONTRIBUTING.md
       - text: "Reference"
@@ -19,7 +21,6 @@ format:
 quartodoc:
   package: dsci524_group36_mlpipeline
   dir: reference
-  index: tutorial.qmd
   sections:
     - title: Machine Learning Pipeline
       desc: Functions to help you build a machine learning pipeline
