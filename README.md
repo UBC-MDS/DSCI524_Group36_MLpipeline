@@ -38,8 +38,23 @@ $ pip install dsci524_group36_mlpipeline
 To use dsci524_group36_mlpipeline in your code:
 
 ```python
->>> import dsci524_group36_mlpipeline
->>> dsci524_group36_mlpipeline.model_comparison(objects, x, y, metric)
+>>> from dsci524_group36_mlpipeline import model_comparison, model_pipeline, eda, model_metrics
+>>> from sklearn.datasets import make_classification
+>>> from sklearn.linear_model import LogisticRegression
+>>> from sklearn.tree import DecisionTreeClassifier
+>>> X, y = make_classification(
+    n_samples=200,
+    n_features=5,
+    n_informative=3,
+    n_redundant=0,
+    n_classes=2,
+    random_state=42
+    )
+>>> lr = LogisticRegression().fit(X, y)
+>>> dt = DecisionTreeClassifier().fit(X, y)
+
+
+>>> best_model = model_comparison(objects, x, y, metric)
 ```
 
 ## Development setup
