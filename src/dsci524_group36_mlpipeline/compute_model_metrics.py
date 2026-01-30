@@ -24,6 +24,27 @@ def compute_model_metrics(model, X, y, metrics):
     ------
     ValueError
         If the model is not fitted or if metric functions are invalid.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> from sklearn.model_selection import train_test_split
+    >>> from sklearn.linear_model import LogisticRegression
+    >>> from sklearn.metrics import accuracy_score
+    >>> from dsci524_group36_mlpipeline.compute_model_metrics import compute_model_metrics
+    >>>
+    >>> # Load a small example dataset
+    >>> df = pd.read_csv("https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv")
+    >>> X = df.drop(columns=["species"])
+    >>> y = df["species"]
+    >>>
+    >>> X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=123)
+    >>> model = LogisticRegression(max_iter=200).fit(X_train, y_train)
+    >>>
+    >>> metrics = {"accuracy": accuracy_score}
+    >>> compute_model_metrics(model, X_test, y_test, metrics)
+       accuracy
+    0      ...
     """
     import pandas as pd
     from sklearn.utils.validation import check_is_fitted
