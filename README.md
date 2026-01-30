@@ -41,13 +41,6 @@ pip install -i https://test.pypi.org/simple/ dsci524_group36_mlpipeline
 pip install dsci524_group36_mlpipeline
 ```
 
-To use dsci524_group36_mlpipeline in your code:
-
-```python
->>> import dsci524_group36_mlpipeline
->>> dsci524_group36_mlpipeline.model_comparison(objects, x, y, metric)
-```
-
 ## Quick Start Example
 
 Below is a minimal, runnable example showing how to train a model and use functions from our package.
